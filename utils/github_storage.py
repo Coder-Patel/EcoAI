@@ -18,7 +18,7 @@ file_mapping = {
 class GitHubStorage:
     def __init__(self):
         # GitHub personal access token
-        self.token = "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"
+        self.token = "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"
         
         try:
             self.g = Github(self.token)

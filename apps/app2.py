@@ -9,7 +9,7 @@ import google.generativeai as genai
 from PIL import Image
 import json
 
-GEMINI_API_KEY = "AIzaSyCIAlO0hEgLlOiernwUcBIXR9z0OjELDCI"
+GEMINI_API_KEY = "AIzaSyCrH4iq4R084mVCJ4y2T0CRf2wqXm41Amc"
 genai.configure(api_key=GEMINI_API_KEY)
 
 st.markdown("""

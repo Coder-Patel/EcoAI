@@ -11,7 +11,7 @@ import numpy as np
 import plotly.express as px
 
 # Set your Gemini API key here
-GEMINI_API_KEY = "AIzaSyCrH4iq4R084mVCJ4y2T0CRf2wqXm41Amc"  # Replace with your actual API key
+GEMINI_API_KEY = "AIzaSyCc-QOhnApLEZA4_ZfsARdikGdDSNPSNms"  # Replace with your actual API key
 
 def init_session_state():
     """Initialize session state variables"""

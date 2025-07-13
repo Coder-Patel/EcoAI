@@ -171,7 +171,7 @@ st.markdown("""
 
 # Configure Gemini API
 # Note: In a production environment, store this in environment variables
-API_KEY = "AIzaSyCrH4iq4R084mVCJ4y2T0CRf2wqXm41Amc"  # Replace with your actual API key
+API_KEY = "AIzaSyCc-QOhnApLEZA4_ZfsARdikGdDSNPSNms"  # Replace with your actual API key
 genai.configure(api_key=API_KEY)
 
 # Set up the model

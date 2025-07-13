@@ -7,7 +7,7 @@ __version__ = '1.0.0'
 __author__ = 'Jwal Patel'
 
 # Default API key
-DEFAULT_API_KEY = "AIzaSyCIAlO0hEgLlOiernwUcBIXR9z0OjELDCI"
+DEFAULT_API_KEY = "AIzaSyCc-QOhnApLEZA4_ZfsARdikGdDSNPSNms"
 
 # Function to initialize the entire application
 def init_app():

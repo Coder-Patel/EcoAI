@@ -110,7 +110,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Your Gemini API key - hard coded so users don't need to enter it
-GEMINI_API_KEY = "AIzaSyCrH4iq4R084mVCJ4y2T0CRf2wqXm41Amc"  # Replace with your actual API key
+GEMINI_API_KEY = "AIzaSyCc-QOhnApLEZA4_ZfsARdikGdDSNPSNms"  # Replace with your actual API key
 genai.configure(api_key=GEMINI_API_KEY)
 
 # Define transportation modes and their carbon footprint (g CO2 per km)

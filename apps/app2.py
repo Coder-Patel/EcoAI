@@ -9,7 +9,7 @@ import google.generativeai as genai
 from PIL import Image
 import json
 
-GEMINI_API_KEY = "AIzaSyCc-QOhnApLEZA4_ZfsARdikGdDSNPSNms"
+GEMINI_API_KEY = "AIzaSyAvKmV1Cu6cXNfMLm5LKujUpkrqLOqwtNU"
 genai.configure(api_key=GEMINI_API_KEY)
 
 st.markdown("""
@@ -187,7 +187,7 @@ st.markdown("""
 def get_energy_recommendations(user_data, appliance_data):
     """Get detailed energy recommendations from Gemini"""
     try:
-        model = genai.GenerativeModel('gemini-1.5-pro')
+        model = genai.GenerativeModel('gemini-2.5-pro')
         
         prompt = f"""
         As an AI energy efficiency expert, analyze the household's energy usage and provide detailed recommendations. 

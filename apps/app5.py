@@ -175,7 +175,7 @@ API_KEY = "AIzaSyCc-QOhnApLEZA4_ZfsARdikGdDSNPSNms"  # Replace with your actual 
 genai.configure(api_key=API_KEY)
 
 # Set up the model
-model = genai.GenerativeModel('gemini-1.5-pro')
+model = genai.GenerativeModel('gemini-2.5-pro')
 
 # Helper functions
 def get_current_level(points):

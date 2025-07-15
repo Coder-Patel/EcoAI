@@ -110,7 +110,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Your Gemini API key - hard coded so users don't need to enter it
-GEMINI_API_KEY = "AIzaSyCc-QOhnApLEZA4_ZfsARdikGdDSNPSNms"  # Replace with your actual API key
+GEMINI_API_KEY = "AIzaSyAvKmV1Cu6cXNfMLm5LKujUpkrqLOqwtNU"  # Replace with your actual API key
 genai.configure(api_key=GEMINI_API_KEY)
 
 # Define transportation modes and their carbon footprint (g CO2 per km)
@@ -133,7 +133,7 @@ transport_emissions = {
 # Function to generate eco-friendly suggestions using Gemini
 def generate_suggestions(travel_data, carbon_footprint):
     try:
-        model = genai.GenerativeModel('gemini-1.5-pro')
+        model = genai.GenerativeModel('gemini-2.5-pro')
         
         # Prepare the prompt with detailed travel data
         prompt = f"""

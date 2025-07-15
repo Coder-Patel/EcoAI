@@ -11,7 +11,7 @@ import numpy as np
 import plotly.express as px
 
 # Set your Gemini API key here
-GEMINI_API_KEY = "AIzaSyCc-QOhnApLEZA4_ZfsARdikGdDSNPSNms"  # Replace with your actual API key
+GEMINI_API_KEY = "AIzaSyAvKmV1Cu6cXNfMLm5LKujUpkrqLOqwtNU"  # Replace with your actual API key
 
 def init_session_state():
     """Initialize session state variables"""
@@ -83,7 +83,7 @@ def main(auth=None):
     def configure_genai_api():
         try:
             genai.configure(api_key=GEMINI_API_KEY)
-            model = genai.GenerativeModel('gemini-1.5-pro')
+            model = genai.GenerativeModel('gemini-2.5-pro')
             st.session_state.api_configured = True
             st.session_state.model = model
             return True

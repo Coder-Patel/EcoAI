@@ -24,20 +24,23 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'
+        python-version: '3.12'
     
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install stlite-desktop  # For converting Streamlit to static
+        # Removed stlite-desktop as it doesn't exist and isn't needed
     
     - name: Create static HTML version
       run: |
         mkdir -p static_build
         
+        # Read the actual main.py file content
+        MAIN_PY_CONTENT=$(cat main.py | sed 's/"/\\"/g' | sed 's/$/\\n/' | tr -d '\n')
+        
         # Create a simple HTML wrapper for your Streamlit app
-        cat > static_build/index.html << 'EOF'
+        cat > static_build/index.html << EOF
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -61,6 +64,21 @@ jobs:
                     align-items: center;
                     height: 100vh;
                     font-size: 18px;
+                    color: #666;
+                }
+                .loading::after {
+                    content: '';
+                    width: 20px;
+                    height: 20px;
+                    border: 2px solid #f3f3f3;
+                    border-top: 2px solid #666;
+                    border-radius: 50%;
+                    animation: spin 1s linear infinite;
+                    margin-left: 10px;
+                }
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
                 }
             </style>
         </head>
@@ -71,62 +89,31 @@ jobs:
             
             <script>
                 const requirements = [
-                    "streamlit",
-                    "pandas",
-                    "numpy",
-                    "matplotlib",
-                    "plotly",
-                    "Pillow",
-                    "requests",
-                    "scikit-learn"
+                    "streamlit==1.31.1",
+                    "pandas==2.2.0",
+                    "numpy==1.26.3",
+                    "matplotlib==3.8.2",
+                    "plotly==5.18.0",
+                    "Pillow==10.2.0",
+                    "requests==2.31.0",
+                    "scikit-learn==1.4.0",
+                    "seaborn==0.13.2"
                 ];
+                
+                // Get all Python files in the repository
+                const files = {};
+                
+                // Add main.py content (you'll need to replace this with actual content)
+                files["main.py"] = \`$(cat main.py | sed 's/`/\\`/g')\`;
+                
+                // Add other Python files if they exist
+                // files["utils.py"] = \`$(if [ -f utils.py ]; then cat utils.py | sed 's/\`/\\\`/g'; fi)\`;
                 
                 stlite.mount(
                     {
                         requirements: requirements,
                         entrypoint: "main.py",
-                        files: {
-                            "main.py": `
-        import streamlit as st
-        
-        st.set_page_config(
-            page_title="EcoWise Living Platform",
-            page_icon="🌍",
-            layout="wide"
-        )
-        
-        st.title("🌍 EcoWise Living Platform")
-        st.markdown("### Static Demo Version")
-        
-        st.info("This is a static demo version of the EcoWise Living Platform.")
-        
-        # Simple demo functionality
-        st.subheader("Transportation Calculator")
-        distance = st.slider("Daily commute distance (miles)", 0, 100, 20)
-        transport_type = st.selectbox("Transportation type", ["Car", "Public Transit", "Bike", "Walk"])
-        
-        carbon_factors = {"Car": 0.404, "Public Transit": 0.089, "Bike": 0.0, "Walk": 0.0}
-        daily_carbon = distance * carbon_factors.get(transport_type, 0)
-        
-        st.metric("Daily Carbon Footprint", f"{daily_carbon:.2f} kg CO2")
-        
-        st.subheader("Energy Usage")
-        energy_usage = st.number_input("Monthly energy usage (kWh)", value=800)
-        energy_cost = energy_usage * 0.12
-        
-        st.metric("Estimated Monthly Cost", f"${energy_cost:.2f}")
-        
-        st.subheader("Water Conservation")
-        shower_time = st.slider("Average shower time (minutes)", 1, 20, 8)
-        water_usage = shower_time * 2.5  # gallons per minute
-        
-        st.metric("Water per shower", f"{water_usage:.1f} gallons")
-        
-        st.markdown("---")
-        st.markdown("**Note:** This is a simplified demo. The full application requires a Python server environment.")
-        st.markdown("For the complete experience, visit the [full application](https://github.com/yourusername/yourrepository)")
-                            `
-                        }
+                        files: files
                     },
                     document.getElementById("stlite-main")
                 );
@@ -138,6 +125,16 @@ jobs:
         # Copy any static assets
         if [ -d "assets" ]; then
             cp -r assets static_build/
+        fi
+        
+        # Copy any data files
+        if [ -d "data" ]; then
+            cp -r data static_build/
+        fi
+        
+        # Copy any other necessary files
+        if [ -f "requirements.txt" ]; then
+            cp requirements.txt static_build/
         fi
     
     - name: Setup Pages

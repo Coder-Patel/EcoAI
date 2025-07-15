@@ -11,7 +11,7 @@ from datetime import date, timedelta
 # Setup for Gemini - using a hardcoded API key
 def configure_gemini():
     # Use a hardcoded API key (replace with your actual key)
-    api_key = "AIzaSyCc-QOhnApLEZA4_ZfsARdikGdDSNPSNms"
+    api_key = "AIzaSyAvKmV1Cu6cXNfMLm5LKujUpkrqLOqwtNU"
     if api_key:
         genai.configure(api_key=api_key)
         return True

@@ -89,7 +89,7 @@ jobs:
             
             <script>
                 const requirements = [
-                    "streamlit==1.31.1",
+                    "streamlit",
                     "pandas==2.2.0",
                     "numpy==1.26.3",
                     "matplotlib==3.8.2",
